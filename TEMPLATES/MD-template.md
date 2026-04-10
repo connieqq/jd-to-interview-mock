@@ -8,7 +8,7 @@ This document defines the markdown format for the interview preparation document
 {候选人名字}_{公司名}_{岗位名}_面试准备.md
 ```
 
-Example: `蔡情情_字节跳动_豆包AI大模型产品经理_面试准备.md`
+Example: `张三_XX跳动_XX产品经理_面试准备.md`
 
 ## Document Structure
 

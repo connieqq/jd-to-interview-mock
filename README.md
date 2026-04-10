@@ -1,10 +1,12 @@
 # JD-to-InterviewMock
 
-**一个将职位描述(JD)和简历转化为个性化面试准备材料的 Trae IDE Skill**
+**一个将职位描述(JD)和简历转化为个性化面试准备材料的通用 AI Skill**
+
+适用于 Trae IDE、Cursor、Claude Code、GitHub Copilot、Codex、OpenCLA 等所有支持自定义技能的 AI IDE 和 Agent
 
 [English](README_EN.md) | 中文
 
----
+***
 
 ## 功能特点
 
@@ -13,54 +15,89 @@
 - **📄 Markdown文档** - 同时输出易读的Markdown格式文档
 - **💡 回答策略** - 每道题提供面试官考察点、回答策略和示范回答
 - **✅ 准备建议** - 清晰的核心优势和待提升点分析
+- **🌐 通用设计** - 适配所有主流 AI IDE 和 Agent
 
 ## 面试题类型覆盖
 
-| 类型 | 数量 | 说明 |
-|------|------|------|
+| 类型   | 数量   | 说明              |
+| ---- | ---- | --------------- |
 | 行为面试 | 3-4道 | 基于简历项目经历，考察实际能力 |
 | 产品设计 | 2-3道 | 结合公司产品方向，考察设计思维 |
-| 产品策略 | 2-3道 | 考察市场和业务理解 |
-| 估算分析 | 1-2道 | 考察逻辑和数据思维 |
-| 情境题 | 2-3道 | 模拟真实工作挑战 |
+| 产品策略 | 2-3道 | 考察市场和业务理解       |
+| 估算分析 | 1-2道 | 考察逻辑和数据思维       |
+| 情境题  | 2-3道 | 模拟真实工作挑战        |
+
+## 平台适配
+
+本 skill 可用于以下平台：
+
+| 平台                        | 使用方式                    |
+| ------------------------- | ----------------------- |
+| **Trae IDE**              | 放置于 `.trae/skills/` 目录  |
+| **Cursor**                | 放置于 `.cursor/rules/` 目录 |
+| **Claude Code / Desktop** | 作为系统提示词或自定义指令           |
+| **GitHub Copilot**        | 作为自定义指令                 |
+| **Codex / OpenCLA**       | 作为提示词指令                 |
+| **其他 Agent**              | 直接复制为自定义技能定义            |
 
 ## 安装
 
-### 方法一：复制 Skill 文件
+### 基本安装
 
 1. 下载或克隆本仓库
-2. 将 `SKILL.md` 复制到你的 Trae IDE 项目中：
-   ```
-   .trae/skills/jd-to-interview-mock/SKILL.md
-   ```
-3. 将 `TEMPLATES/` 目录也复制到对应位置：
-   ```
-   .trae/skills/jd-to-interview-mock/TEMPLATES/
-   ```
+2. 根据您使用的平台，将文件放置到对应目录（见上表）
+3. 重启 IDE 或重新加载工作区
 
-### 方法二：创建目录结构
+### Trae IDE
 
 ```
-.trae/skills/jd-to-interview-mock/
-├── SKILL.md              # 主技能文件
-└── TEMPLATES/
-    ├── HTML-template.md  # HTML设计规范
-    └── MD-template.md   # Markdown格式规范
+.your-project/
+├── .trae/
+│   └── skills/
+│       └── jd-to-interview-mock/
+│           ├── SKILL.md
+│           └── TEMPLATES/
+│               ├── HTML-template.md
+│               └── MD-template.md
 ```
+
+### Cursor
+
+```
+.your-project/
+├── .cursor/
+│   └── rules/
+│       └── jd-to-interview-mock.md
+```
+
+### Claude Code / Desktop
+
+将 `SKILL.md` 的内容作为系统提示词使用：
+
+```json
+{
+  "systemPrompt": "[粘贴 SKILL.md 内容]"
+}
+```
+
+### 其他平台
+
+直接将 `SKILL.md` 内容复制到对应平台的自定义指令配置中。
 
 ## 使用方式
 
 ### 1. 准备材料
 
 在开始前，请准备：
-- **公司名称** - 如 "字节跳动"
+
+- **公司名称** - 如 "XX 跳动"
 - **岗位名称** - 如 "AI产品经理"
 - **岗位JD** - 完整的职位描述（包含团队介绍、职责、要求）
 - **个人简历** - Markdown格式或文件路径
 
 ### 2. 调用 Skill
 
-在 Trae IDE 中调用 `jd-to-interview-mock` skill，然后提供以上材料。
+在对应的 AI IDE 中调用 `jd-to-interview-mock` skill，然后提供以上材料。
 
 ### 3. 获取输出
 
@@ -93,22 +130,22 @@ Skill 会生成两个文件：
 ### 输入
 
 ```
-公司：字节跳动
-岗位：豆包AI大模型产品经理
-JD：火山方舟MaaS平台产品经理...
-简历：蔡情情 - 浙大CS硕士，3年产品经理经验...
+公司：XX跳动
+岗位：XX产品经理
+JD：XX平台产品经理...
+简历：张三 - XX硕士，3年产品经理经验...
 ```
 
 ### 输出结构
 
 ```markdown
-# 蔡情情 - 字节跳动 豆包AI大模型产品经理 面试准备
+# 张三 - XX跳动 XX产品经理 面试准备
 
 ## 一、公司 & 岗位概况
-### 1.1 字节跳动
+### 1.1 XX跳动
 - 公司基本信息、核心业务、财务表现
 
-### 1.2 豆包AI大模型产品经理
+### 1.2 XX产品经理
 - 团队介绍、核心职责、职位要求
 
 ## 二、面试题 (共15道)
@@ -128,7 +165,7 @@ JD：火山方舟MaaS平台产品经理...
 jd-to-interview-mock/
 ├── README.md             # 本文件
 ├── README_EN.md         # English version
-├── SKILL.md             # 主技能文件
+├── SKILL.md             # 主技能文件（通用）
 ├── TEMPLATES/
 │   ├── HTML-template.md # HTML设计规范
 │   └── MD-template.md   # Markdown格式规范
@@ -172,7 +209,14 @@ jd-to-interview-mock/
 
 ## 更新日志
 
+### v1.1.0 (2026-04-11)
+
+- 定位为通用 AI Skill，支持所有主流 IDE 和 Agent
+- 移除平台特定描述
+- 新增多平台使用说明
+
 ### v1.0.0 (2026-04-10)
+
 - 初始版本发布
 - 支持生成HTML和Markdown两种格式
 - 包含完整的面试题库和回答策略
@@ -183,9 +227,8 @@ jd-to-interview-mock/
 
 ## 致谢
 
-- [Trae IDE](https://www.trae.ai/) - AI驱动的开发环境
 - [Google Fonts](https://fonts.google.com/) - 开源字体
 
----
+***
 
 如果你觉得这个项目有帮助，请 ⭐ star 支持一下！

@@ -1,6 +1,8 @@
 # JD-to-InterviewMock
 
-**A Trae IDE Skill that transforms Job Descriptions (JD) and Resumes into personalized interview preparation materials**
+**A universal AI Skill that transforms Job Descriptions (JD) and Resumes into personalized interview preparation materials**
+
+Works with Trae IDE, Cursor, Claude Code, GitHub Copilot, Codex, OpenCLA, and any AI IDE or Agent that supports custom skills
 
 ---
 
@@ -11,6 +13,7 @@
 - **📄 Markdown Document** - Also output easy-to-read Markdown format document
 - **💡 Answer Strategies** - Provide interview evaluation points, answer strategies, and sample answers for each question
 - **✅ Preparation Tips** - Clear analysis of core strengths and areas to improve
+- **🌐 Universal Design** - Works with all major AI IDEs and Agents
 
 ## Question Types Coverage
 
@@ -22,43 +25,76 @@
 | Estimation | 1-2 | Assess logical and data thinking |
 | Scenario | 2-3 | Simulate real work challenges |
 
+## Platform Compatibility
+
+This skill works with the following platforms:
+
+| Platform | Usage |
+|----------|-------|
+| **Trae IDE** | Place in `.trae/skills/` directory |
+| **Cursor** | Place in `.cursor/rules/` directory |
+| **Claude Code / Desktop** | Use as system prompt or custom instructions |
+| **GitHub Copilot** | Use as custom instructions |
+| **Codex / OpenCLA** | Use as prompt instructions |
+| **Other Agents** | Copy as custom skill definition |
+
 ## Installation
 
-### Method 1: Copy Skill Files
+### Basic Installation
 
-1. Download or clone this repo
-2. Copy `SKILL.md` to your Trae IDE project:
-   ```
-   .trae/skills/jd-to-interview-mock/SKILL.md
-   ```
-3. Copy `TEMPLATES/` directory to corresponding location:
-   ```
-   .trae/skills/jd-to-interview-mock/TEMPLATES/
-   ```
+1. Download or clone this repository
+2. Place files in the appropriate directory for your platform (see table above)
+3. Restart IDE or reload workspace
 
-### Method 2: Create Directory Structure
+### Trae IDE
 
 ```
-.trae/skills/jd-to-interview-mock/
-├── SKILL.md              # Main skill file
-└── TEMPLATES/
-    ├── HTML-template.md # HTML design specifications
-    └── MD-template.md   # Markdown format specifications
+.your-project/
+├── .trae/
+│   └── skills/
+│       └── jd-to-interview-mock/
+│           ├── SKILL.md
+│           └── TEMPLATES/
+│               ├── HTML-template.md
+│               └── MD-template.md
 ```
+
+### Cursor
+
+```
+.your-project/
+├── .cursor/
+│   └── rules/
+│       └── jd-to-interview-mock.md
+```
+
+### Claude Code / Desktop
+
+Use the `SKILL.md` content as your system prompt:
+
+```json
+{
+  "systemPrompt": "[paste SKILL.md content here]"
+}
+```
+
+### Other Platforms
+
+Simply copy the `SKILL.md` content into your platform's custom instructions configuration.
 
 ## Usage
 
 ### 1. Prepare Materials
 
 Before starting, prepare:
-- **Company Name** - e.g., "ByteDance"
+- **Company Name** - e.g., "XX Tech"
 - **Job Title** - e.g., "AI Product Manager"
 - **Job Description (JD)** - Complete job posting including team intro, responsibilities, requirements
 - **Resume** - Markdown format or file path
 
 ### 2. Invoke Skill
 
-Invoke the `jd-to-interview-mock` skill in Trae IDE, then provide the above materials.
+Invoke the `jd-to-interview-mock` skill in your AI IDE, then provide the above materials.
 
 ### 3. Get Output
 
@@ -92,7 +128,7 @@ The skill generates two files:
 jd-to-interview-mock/
 ├── README.md             # This file
 ├── README_EN.md         # English version
-├── SKILL.md             # Main skill file
+├── SKILL.md             # Main skill file (universal)
 ├── TEMPLATES/
 │   ├── HTML-template.md # HTML design specifications
 │   └── MD-template.md   # Markdown format specifications
@@ -136,6 +172,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Changelog
 
+### v1.1.0 (2026-04-11)
+- Redefined as universal AI Skill supporting all major IDEs and Agents
+- Removed platform-specific descriptions
+- Added multi-platform usage instructions
+
 ### v1.0.0 (2026-04-10)
 - Initial release
 - Support generating HTML and Markdown formats
@@ -148,7 +189,3 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file
 ## Show Your Support
 
 Give a ⭐ if this project helped you!
-
----
-
-Translated with DeepL

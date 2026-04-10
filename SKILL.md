@@ -7,6 +7,17 @@ description: "Generates personalized interview preparation materials (HTML & MD)
 
 Generate personalized interview preparation materials from job description (JD) and candidate's resume.
 
+## Overview
+
+This is a **universal AI skill** compatible with any AI-powered IDE or Agent that supports custom skills/instructions, including:
+
+- **Trae IDE** - Use as a skill in `.trae/skills/` directory
+- **Cursor** - Use as a rule in `.cursor/rules/`
+- **Claude Code / Claude Desktop** - Use as system prompt or custom instructions
+- **GitHub Copilot** - Use as custom instructions
+- **Codex / OpenCLA** - Use as prompt instructions
+- **Any Agent** - Copy-paste as custom skill definition
+
 ## When to Invoke
 
 Use this skill when:
@@ -19,7 +30,7 @@ Use this skill when:
 
 Before starting, collect the following information from the user:
 
-1. **Company Name** - e.g., "字节跳动", "阿里巴巴", "腾讯"
+1. **Company Name** - e.g., "XX跳动", "XX里", "XX讯"
 2. **Job Title** - e.g., "高级产品经理", "AI产品经理"
 3. **Job Description (JD)** - Full text of the job posting including:
    - Team/Product introduction
@@ -127,34 +138,35 @@ Detailed output specifications are in separate template files:
        ↓
 7. Create MD file (follow MD-template.md)
        ↓
-8. Start local HTTP server for HTML preview
+8. Start local HTTP server for HTML preview (if supported)
 ```
 
 ## Example Usage
 
 ```
-User: 我要面试字节跳动的豆包AI大模型产品经理岗位，这是我的简历 /Users/connie/resume.md
+User: 我要面试XX跳动的AI产品经理岗位，这是我的简历 /path/to/resume.md
 
 Assistant:
 1. Please provide:
-   - Company: 字节跳动 ✓
-   - Job Title: 豆包AI大模型产品经理 ✓
+   - Company: XX跳动 ✓
+   - Job Title: AI产品经理 ✓
    - Job Description (JD): ?
-   - Resume: /Users/connie/resume.md ✓
+   - Resume: /path/to/resume.md ✓
 
 2. [User pastes JD]
 
 3. [AI generates content following templates]
 
 4. Output:
-   - 蔡情情_字节跳动_豆包AI大模型产品经理_面试准备.html
-   - 蔡情情_字节跳动_豆包AI大模型产品经理_面试准备.md
+   - 张三_XX跳动_AI产品经理_面试准备.html
+   - 张三_XX跳动_AI产品经理_面试准备.md
 ```
 
 ## Technical Notes
 
-- Use WebSearch to gather company and product information
-- Use WebFetch to get detailed company/product pages from JD links
+- Use WebSearch to gather company and product information (if available)
+- Use WebFetch to get detailed company/product pages from JD links (if available)
 - Read resume file if provided as file path
 - Create files in current working directory
 - Use candidate's actual name from resume for file naming
+- If HTTP server is not available, output file path and suggest user open in browser
