@@ -4,7 +4,7 @@
 
 Works with Trae IDE, Cursor, Claude Code, GitHub Copilot, Codex, OpenCLA, and any AI IDE or Agent that supports custom skills
 
----
+***
 
 ## Features
 
@@ -17,26 +17,26 @@ Works with Trae IDE, Cursor, Claude Code, GitHub Copilot, Codex, OpenCLA, and an
 
 ## Question Types Coverage
 
-| Type | Count | Description |
-|------|-------|-------------|
-| Behavioral | 3-4 | Based on resume project experience, assess actual abilities |
-| Product Design | 2-3 | Combined with company product direction, assess design thinking |
-| Product Strategy | 2-3 | Assess market and business understanding |
-| Estimation | 1-2 | Assess logical and data thinking |
-| Scenario | 2-3 | Simulate real work challenges |
+| Type             | Count | Description                                                     |
+| ---------------- | ----- | --------------------------------------------------------------- |
+| Behavioral       | 3-4   | Based on resume project experience, assess actual abilities     |
+| Product Design   | 2-3   | Combined with company product direction, assess design thinking |
+| Product Strategy | 2-3   | Assess market and business understanding                        |
+| Estimation       | 1-2   | Assess logical and data thinking                                |
+| Scenario         | 2-3   | Simulate real work challenges                                   |
 
 ## Platform Compatibility
 
 This skill works with the following platforms:
 
-| Platform | Usage |
-|----------|-------|
-| **Trae IDE** | Place in `.trae/skills/` directory |
-| **Cursor** | Place in `.cursor/rules/` directory |
+| Platform                  | Usage                                       |
+| ------------------------- | ------------------------------------------- |
+| **Trae IDE**              | Place in `.trae/skills/` directory          |
+| **Cursor**                | Place in `.cursor/rules/` directory         |
 | **Claude Code / Desktop** | Use as system prompt or custom instructions |
-| **GitHub Copilot** | Use as custom instructions |
-| **Codex / OpenCLA** | Use as prompt instructions |
-| **Other Agents** | Copy as custom skill definition |
+| **GitHub Copilot**        | Use as custom instructions                  |
+| **Codex / OpenCLA**       | Use as prompt instructions                  |
+| **Other Agents**          | Copy as custom skill definition             |
 
 ## Installation
 
@@ -68,25 +68,23 @@ This skill works with the following platforms:
 │       └── jd-to-interview-mock.md
 ```
 
-### Claude Code / Desktop
-
-Use the `SKILL.md` content as your system prompt:
+### Claude Code / Desktop (And Other Platforms)
 
 ```json
-{
-  "systemPrompt": "[paste SKILL.md content here]"
-}
+git clone https://github.com/connieqq/jd-to-interview-mock  
+
+##或者直接用自然语言描述
+帮我安装这个技能：https://github.com/connieqq/jd-to-interview-mock
 ```
 
-### Other Platforms
-
-Simply copy the `SKILL.md` content into your platform's custom instructions configuration.
+<br />
 
 ## Usage
 
 ### 1. Prepare Materials
 
 Before starting, prepare:
+
 - **Company Name** - e.g., "XX Tech"
 - **Job Title** - e.g., "AI Product Manager"
 - **Job Description (JD)** - Complete job posting including team intro, responsibilities, requirements
@@ -173,11 +171,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Changelog
 
 ### v1.1.0 (2026-04-11)
+
 - Redefined as universal AI Skill supporting all major IDEs and Agents
 - Removed platform-specific descriptions
 - Added multi-platform usage instructions
 
 ### v1.0.0 (2026-04-10)
+
 - Initial release
 - Support generating HTML and Markdown formats
 - Includes complete interview question bank and answer strategies

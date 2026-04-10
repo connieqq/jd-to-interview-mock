@@ -70,19 +70,18 @@
 │       └── jd-to-interview-mock.md
 ```
 
-### Claude Code / Desktop
+### Claude Code / Desktop （以及其他平台）
 
-将 `SKILL.md` 的内容作为系统提示词使用：
+手动安装该技能：
 
 ```json
-{
-  "systemPrompt": "[粘贴 SKILL.md 内容]"
-}
+git clone https://github.com/connieqq/jd-to-interview-mock  
+
+##或者直接用自然语言描述
+帮我安装这个技能：https://github.com/connieqq/jd-to-interview-mock
 ```
 
-### 其他平台
-
-直接将 `SKILL.md` 内容复制到对应平台的自定义指令配置中。
+<br />
 
 ## 使用方式
 
