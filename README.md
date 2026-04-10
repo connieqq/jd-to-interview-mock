@@ -74,7 +74,7 @@
 
 手动安装该技能：
 
-```json
+```Markdown
 git clone https://github.com/connieqq/jd-to-interview-mock  
 
 ##或者直接用自然语言描述
