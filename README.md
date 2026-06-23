@@ -1,8 +1,8 @@
 # JD-to-InterviewMock
 
-**一个将职位描述(JD)和简历转化为个性化面试准备材料的通用 AI Skill**
+**一个基于职位描述(JD)和简历，转化生成个性化面试准备材料的通用 AI Skill（目前主要for 产品经理岗位）**
 
-适用于 Trae IDE、Cursor、Claude Code、GitHub Copilot、Codex、OpenCLA 等所有支持自定义技能的 AI IDE 和 Agent
+适用于 Trae 、Cursor、Claude Code、Codex、Openclaw 等所有支持自定义技能的 AI Agent 和 IDE
 
 [English](README_EN.md) | 中文
 
@@ -27,19 +27,6 @@
 | 估算分析 | 1-2道 | 考察逻辑和数据思维       |
 | 情境题  | 2-3道 | 模拟真实工作挑战        |
 
-## 平台适配
-
-本 skill 可用于以下平台：
-
-| 平台                        | 使用方式                    |
-| ------------------------- | ----------------------- |
-| **Trae IDE**              | 放置于 `.trae/skills/` 目录  |
-| **Cursor**                | 放置于 `.cursor/rules/` 目录 |
-| **Claude Code / Desktop** | 作为系统提示词或自定义指令           |
-| **GitHub Copilot**        | 作为自定义指令                 |
-| **Codex / OpenCLA**       | 作为提示词指令                 |
-| **其他 Agent**              | 直接复制为自定义技能定义            |
-
 ## 安装
 
 ### 基本安装
@@ -48,29 +35,8 @@
 2. 根据您使用的平台，将文件放置到对应目录（见上表）
 3. 重启 IDE 或重新加载工作区
 
-### Trae IDE
 
-```
-.your-project/
-├── .trae/
-│   └── skills/
-│       └── jd-to-interview-mock/
-│           ├── SKILL.md
-│           └── TEMPLATES/
-│               ├── HTML-template.md
-│               └── MD-template.md
-```
-
-### Cursor
-
-```
-.your-project/
-├── .cursor/
-│   └── rules/
-│       └── jd-to-interview-mock.md
-```
-
-### Claude Code / Desktop （以及其他平台）
+### Claude Code /Codex/ Desktop （以及其他平台）
 
 手动安装该技能：
 
@@ -96,7 +62,15 @@ git clone https://github.com/connieqq/jd-to-interview-mock
 
 ### 2. 调用 Skill
 
-在对应的 AI IDE 中调用 `jd-to-interview-mock` skill，然后提供以上材料。
+在对应的 AI Agent 工具中调用 `jd-to-interview-mock` skill，然后提供以上材料。
+生成面试模拟的prompt 描述参考如下：
+
+```
+我要面试XX公司的 XX 产品经理岗位，请用 jd-to-interview-mock 帮我生成面试准备材料。
+# 这是我的简历：/Users/resume.md
+# 这是岗位 JD：……
+
+```
 
 ### 3. 获取输出
 
@@ -189,36 +163,6 @@ jd-to-interview-mock/
 
 编辑 `TEMPLATES/MD-template.md` 中的文档结构。
 
-## 技术栈
-
-- **HTML5** - 语义化标签
-- **CSS3** - CSS变量、动画、响应式
-- **JavaScript** - 原生JS，无依赖
-- **Google Fonts** - Outfit, Noto Sans SC, Space Mono
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建你的 Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. 提交你的 Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push 到 Branch (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
-
-## 更新日志
-
-### v1.1.0 (2026-04-11)
-
-- 定位为通用 AI Skill，支持所有主流 IDE 和 Agent
-- 移除平台特定描述
-- 新增多平台使用说明
-
-### v1.0.0 (2026-04-10)
-
-- 初始版本发布
-- 支持生成HTML和Markdown两种格式
-- 包含完整的面试题库和回答策略
 
 ## 许可证
 

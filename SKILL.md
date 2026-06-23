@@ -36,9 +36,25 @@ Before starting, collect the following information from the user:
    - Team/Product introduction
    - Job responsibilities
    - Job requirements
-4. **Resume** - Candidate's resume in markdown format or file path (e.g., `/path/to/resume.md`)
+4. **Resume** - Candidate's resume content or file path. Supported formats:
+   - Markdown: `.md`, `.markdown`
+   - PDF: `.pdf`
+   - Word: `.docx`, `.doc` where local tooling supports conversion
 
 If user hasn't provided all inputs, ask for them before proceeding.
+
+## Resume Normalization Requirement
+
+Use Markdown as the single resume input format for all downstream analysis.
+
+- If the user provides Markdown text or a Markdown file, use it directly as the normalized resume source.
+- If the user provides a PDF or Word resume, first convert it into a Markdown file in the current working directory.
+- Name the converted file with the original resume basename plus `_converted.md`, for example `resume.pdf` → `resume_converted.md`.
+- Treat PDF/Word-to-Markdown conversion as faithful content migration, not summarization or rewriting.
+- Preserve the original resume content and key resume sections as completely as possible: candidate name, contact details, education, work experience, project experience, skills, dates, company names, role titles, metrics, achievements, tools/technologies, and section hierarchy.
+- Keep the original section order, heading structure, bullet hierarchy, paragraph boundaries, and important keywords. Do not drop short bullets, quantified results, project context, or responsibility details just because they look repetitive.
+- After conversion, read the generated Markdown file and use only that normalized Markdown content for JD/resume alignment and interview material generation.
+- If PDF or Word conversion fails or produces obviously incomplete content, stop and ask the user for a cleaner PDF, Word, or Markdown version before generating interview materials.
 
 ## Output Files
 
@@ -53,6 +69,29 @@ The skill generates TWO files in the current working directory:
 2. **Markdown File**: `{候选人名字}_{公司名}_{岗位名}_面试准备.md`
    - Plain text format for easy reading/sharing
    - Complete content in structured sections
+
+## Content Parity Requirement
+
+The HTML and Markdown files must be generated from the same complete content source. Do not write separate shortened copy for HTML.
+
+Before rendering either file, create a single internal content master that includes:
+- Candidate, company, role, and generation date
+- Company and position overview
+- Full ordered question list with stable question IDs (`Q1`, `Q2`, ...)
+- For every question: type, title, complete question text, interviewer evaluation criteria, answer strategy, sample answer, and key insight
+- Candidate strengths, areas to improve, interview-day checklist, communication tips, and suggested reverse questions
+
+Use the content master as the source of truth for both outputs:
+- Markdown renders the content master as structured text.
+- HTML renders the same content master with visual styling, cards, filters, and interactions.
+- HTML may add layout labels, icons, badges, or navigation, but must not omit, summarize, or shorten any substantive text present in Markdown.
+- Markdown may omit purely visual UI elements, but must include every substantive text item shown in HTML.
+
+After generating both files, perform a parity check before finishing:
+- The question count and question IDs must match exactly.
+- Each question must have the same title, type, full question text, evaluation criteria, answer strategy, sample answer, and key insight in both files.
+- The overview, strengths, improvement areas, interview-day tips, communication tips, and reverse questions must contain the same substantive content.
+- If any mismatch is found, fix the shorter or missing side before reporting completion.
 
 ## Output Content Structure
 
@@ -126,19 +165,23 @@ Detailed output specifications are in separate template files:
 ```
 1. Collect user inputs (company, job, JD, resume)
        ↓
-2. Analyze JD requirements and resume alignment
+2. Normalize resume to Markdown if needed
        ↓
-3. Search for company/product information (WebSearch)
+3. Analyze JD requirements and normalized resume alignment
        ↓
-4. Generate 10-15 interview questions
+4. Search for company/product information (WebSearch)
        ↓
-5. Generate answer strategies for each question
+5. Build one complete content master for the whole deliverable
        ↓
-6. Create HTML file (follow HTML-template.md)
+6. Generate 10-15 interview questions and all answer content in that content master
        ↓
-7. Create MD file (follow MD-template.md)
+7. Create Markdown file from the content master (follow MD-template.md)
        ↓
-8. Start local HTTP server for HTML preview (if supported)
+8. Create HTML file from the same content master (follow HTML-template.md)
+       ↓
+9. Compare HTML and Markdown for substantive content parity
+       ↓
+10. Start local HTTP server for HTML preview (if supported)
 ```
 
 ## Example Usage
@@ -167,6 +210,7 @@ Assistant:
 - Use WebSearch to gather company and product information (if available)
 - Use WebFetch to get detailed company/product pages from JD links (if available)
 - Read resume file if provided as file path
+- Convert PDF or Word resumes to a Markdown file before analysis, then use that generated Markdown file as the resume source
 - Create files in current working directory
 - Use candidate's actual name from resume for file naming
 - If HTTP server is not available, output file path and suggest user open in browser
