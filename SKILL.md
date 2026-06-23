@@ -49,7 +49,7 @@ Use Markdown as the single resume input format for all downstream analysis.
 
 - If the user provides Markdown text or a Markdown file, use it directly as the normalized resume source.
 - If the user provides a PDF or Word resume, first convert it into a Markdown file in the current working directory.
-- Name the converted file with the original resume basename plus `_converted.md`, for example `resume.pdf` → `resume_converted.md`.
+- Name the converted file with the original resume basename and `.md`, for example `resume.pdf` → `resume.md`.
 - Treat PDF/Word-to-Markdown conversion as faithful content migration, not summarization or rewriting.
 - Preserve the original resume content and key resume sections as completely as possible: candidate name, contact details, education, work experience, project experience, skills, dates, company names, role titles, metrics, achievements, tools/technologies, and section hierarchy.
 - Keep the original section order, heading structure, bullet hierarchy, paragraph boundaries, and important keywords. Do not drop short bullets, quantified results, project context, or responsibility details just because they look repetitive.
