@@ -66,7 +66,7 @@ git clone https://github.com/connieqq/jd-to-interview-mock
 生成面试模拟的prompt 描述参考如下：
 
 ```
-我要面试XX公司的 XX 产品经理岗位，请用 jd-to-interview-mock 帮我生成面试准备材料。
+我要面试XX公司的 XX 产品经理岗位，请用 jd-to-interview-mock skill 帮我生成面试准备材料。
 # 这是我的简历：/Users/resume.md
 # 这是岗位 JD：……
 
